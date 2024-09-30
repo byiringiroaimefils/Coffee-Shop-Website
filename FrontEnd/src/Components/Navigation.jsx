@@ -24,7 +24,7 @@ export default function Navigation() {
         <>
             {
 
-                <div className="Navigation flex justify-between m-10">
+                <div className="Navigation flex justify-between m-8">
                     <div className="Logo mx-5">
                         <span className="font-bold text-lg text-gray-500"><Link>Coffee Shop.</Link></span>
                     </div>

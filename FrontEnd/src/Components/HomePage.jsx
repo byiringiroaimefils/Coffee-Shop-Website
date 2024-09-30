@@ -38,14 +38,14 @@ export default function HomePage() {
                     <div className="translate-y-[-5%]">
                         <h2 className="text-4xl font-extrabold">Lorem ipsum dolor sit amet consectetur <br />adipisicing elit Explicabo.</h2> <br />
                         <p className="text-gray-500">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam minus Lorem, ipsum <br />
-                            quos iure molestias perspiciatis, inventore corrupti culpa nemo eius Lorem ipsum  <br />
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam minus , ipsum <br />
+                            quos iure molestias perspiciatis, inventore corrupti culpa nemo eius Lorem   <br />
                             dolor. cupiditate dolor sit.
                         </p> <br /><br />
                         <button className="bg-black text-white w-64 p-2 font-bold rounded-full hover:bg-gray-800">Order</button>
                     </div> <br />
                     <div className=" md:translate-y-[-27%] translate-x-[-4%] bg-center">
-                        <img src={Coffe} alt="coffee image" className="w-auto" />
+                        <img src={Coffe} alt="coffee image" className="w-auto h-auto" />
                     </div>
                     <div className="translate-y-24 flex flex-col gap-10 ">
                         <ul className=" hidden md:block">
@@ -56,7 +56,8 @@ export default function HomePage() {
                     </div>
                 </div><br /><br /><br /><br />
                 <div className="my-[-20%] text-center">
-                    <h2 className="text-3xl font-extrabold">Featured Beverage   </h2>
+                <h2 className="text-4xl font-bold mb-2">FEATURED BEVERAGE</h2>
+                    <div className="w-24 h-1 bg-gray-300 mx-auto mb-4"></div> 
                     <p className="text-gray-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, hic!</p> <br />
                     <div className=" py-12">
                         <div className="container mx-auto ">
@@ -77,8 +78,8 @@ export default function HomePage() {
                             </div>
                         </div>
                     </div>
-                    <Order />
-                    <About />
+                    <Order /> <br /><br />
+                    <About /> <br /><br />
                     <Contact />
                 </div>
             </div>
