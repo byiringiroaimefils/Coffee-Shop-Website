@@ -1,5 +1,4 @@
 // ------ Library and PlugIn----
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
@@ -12,8 +11,9 @@ App.use(bodyParser.json());
 const Product = require('./Models/Product.js');
 const user = require('./Models/user.js');
 const Order = require('./Models/Order');
-
 require("dotenv").config();
+const cors = require('cors');
+App.use(cors());
 
 
 
@@ -97,11 +97,7 @@ App.put("/EditProduct/:id", (req, resp) => {
 
 App.post('/signup', async (req, res) => {
     try {
-        const { username, email, password } = {
-            username: req.body,
-            email: req.body,
-            password: req.body
-        };
+        const { username, email, password } = req.body; 
 
         if (!password & !email) {
             return res.status(400).json({ message: 'Password is required email' });
@@ -124,10 +120,7 @@ App.post('/signup', async (req, res) => {
 App.post('/login', async (req, resp) => {
     try {
 
-        const { email, password } = {
-            email: req.body,
-            password: req.body
-        };
+        const { email, password } = req.body;
         const users = await user.findOne({ email })
         if (!users) {
             return resp.json({ message: 'User not found' });

@@ -1,5 +1,11 @@
 import Navigation from "../Components/Navigation";
 import Coffe from "../assets/Coffe.png";
+import { BsTwitterX } from "react-icons/bs";
+import { FaFacebook } from "react-icons/fa6";
+import { FaInstagram } from "react-icons/fa6";
+import Order from "./order";
+import About from "./About";
+import Contact from "./Contac";
 export default function HomePage() {
 
     const menuItems = [
@@ -22,13 +28,14 @@ export default function HomePage() {
             link: "#",
         },
     ];
+
     return (
         <>
             <Navigation />
             <div className="">
 
                 <div className=" md:flex p-14 md:my-32 justify-center gap-20">
-                    <div className="">
+                    <div className="translate-y-[-5%]">
                         <h2 className="text-4xl font-extrabold">Lorem ipsum dolor sit amet consectetur <br />adipisicing elit Explicabo.</h2> <br />
                         <p className="text-gray-500">
                             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam minus Lorem, ipsum <br />
@@ -40,13 +47,20 @@ export default function HomePage() {
                     <div className=" md:translate-y-[-27%] translate-x-[-4%] bg-center">
                         <img src={Coffe} alt="coffee image" className="w-auto" />
                     </div>
-                </div>
+                    <div className="translate-y-24 flex flex-col gap-10 ">
+                        <ul className=" hidden md:block">
+                            <li className="text-xl">< FaFacebook /></li> <br />
+                            <li className="text-xl font-bold text-gray-500">< BsTwitterX /></li> <br />
+                            <li className="text-xl">< FaInstagram /></li>
+                        </ul>
+                    </div>
+                </div><br /><br /><br /><br />
                 <div className="my-[-20%] text-center">
                     <h2 className="text-3xl font-extrabold">Featured Beverage   </h2>
                     <p className="text-gray-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, hic!</p> <br />
                     <div className=" py-12">
                         <div className="container mx-auto ">
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-between">
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-between p-10">
                                 {menuItems.map((item, index) => (
                                     <div
                                         key={index}
@@ -63,6 +77,9 @@ export default function HomePage() {
                             </div>
                         </div>
                     </div>
+                    <Order />
+                    <About />
+                    <Contact />
                 </div>
             </div>
         </>

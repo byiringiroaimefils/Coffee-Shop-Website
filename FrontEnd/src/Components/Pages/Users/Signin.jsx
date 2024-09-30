@@ -35,7 +35,7 @@ const Login = () => {
               Email
             </label>
             <input
-              className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border  w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="email"
               type="email"
               placeholder="Email"
@@ -47,7 +47,7 @@ const Login = () => {
               Password
             </label>
             <input
-              className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border  w-full py-3 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
               id="password"
               type="password"
               placeholder="******************"
@@ -62,7 +62,7 @@ const Login = () => {
           </div>
           <div className="flex items-center justify-between">
             <button
-              className="bg-black hover:bg-gray-800 text-white font-bold py-3 px-4 rounded  w-full focus:outline-none focus:shadow-outline"
+              className="bg-black hover:bg-gray-800 text-white font-bold py-3 px-4   w-full focus:outline-none focus:shadow-outline"
               type="submit"
             >
               Login
