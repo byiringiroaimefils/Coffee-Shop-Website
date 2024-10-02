@@ -107,9 +107,9 @@ export default function Admin() {
                 </div>
                 <nav className="md:flex hidden">
                     <ul className="flex gap-7 translate-x-[-15%]">
-                        <li className="font-bold text-gray-500"><Link to="/home">Home</Link></li>
+                        <li className="font-bold text-gray-500"><Link to="/home">HOME</Link></li>
                         <li className="font-bold text-gray-500"><Link to="/order">ORDER</Link></li>
-                        <li className="font-bold text-gray-500"><Link to="/about">AbOUT</Link></li>
+                        <li className="font-bold text-gray-500"><Link to="/about">ABOUT</Link></li>
                         <li className="font-bold text-gray-500"><Link to="/contact">CONTACT</Link></li>
                         <li className="font-bold text-gray-500"><Link to="/Admin">ADMIN</Link></li>
                     </ul>

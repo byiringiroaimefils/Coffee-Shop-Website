@@ -66,12 +66,12 @@ export default function HomePage() {
                 </div>
                 <nav className="w-full md:w-auto mt-4 md:mt-0">
                     <ul className="flex flex-wrap justify-center md:justify-start gap-4 md:gap-7">
-                        <li className="font-bold text-gray-500"><Link to="/home">Home</Link></li>
-                        <li className="font-bold text-gray-500"><Link to="#order" onClick={() => scrollToSection(orderRef)}>Order</Link></li>
-                        <li className="font-bold text-gray-500"><Link to="#about" onClick={() => scrollToSection(aboutRef)}>About</Link></li>
-                        <li className="font-bold text-gray-500"><Link to="#contact" onClick={() => scrollToSection(contactRef)}>Contact</Link></li>
+                        <li className="font-bold text-gray-500"><Link to="/home">HOME</Link></li>
+                        <li className="font-bold text-gray-500"><Link to="#order" onClick={() => scrollToSection(orderRef)}>ORDER</Link></li>
+                        <li className="font-bold text-gray-500"><Link to="#about" onClick={() => scrollToSection(aboutRef)}>ABOUT</Link></li>
+                        <li className="font-bold text-gray-500"><Link to="#contact" onClick={() => scrollToSection(contactRef)}>CONTACT</Link></li>
                         {userRole === 'aimefils225@gmail.com' && (
-                            <li className="font-bold text-gray-500"><Link to="/Admin">Admin</Link></li>
+                            <li className="font-bold text-gray-500"><Link to="/Admin">ADMIN</Link></li>
                         )}
                     </ul>
                 </nav>
