@@ -5,24 +5,33 @@ import axios from 'axios';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    axios.post('http://localhost:8000/login', { email, password })
-      .then((response) => {
-        const { token } = response.data
-        if (token) {
-          localStorage.setItem('token', token);
-          localStorage.setItem('user', email);
-          navigate('/Home')
-        } else {
-          console.log("None");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+    setError('');
+    try {
+      const response = await axios.post('http://localhost:8000/login', { email, password });
+      const { token, role } = response.data;
+      if (token) {
+        localStorage.setItem('token', token);
+        localStorage.setItem('Role', role);
+        navigate('/Home');
+      } else {
+        setError('Login failed. Please check your credentials.');
+      }
+    } catch (error) {
+      if (error.response) {
+       
+        setError(error.response.data.message || 'An error occurred during login.');
+      } else if (error.request) {
+        setError('No response received from server. Please try again later.');
+      } else {
+        setError('An error occurred. Please try again.');
+      }
+      console.error('Login error:', error);
+    }
   };
 
   return (
@@ -30,6 +39,7 @@ const Login = () => {
       <div className="w-full max-w-md">
         <form onSubmit={handleLogin} className="">
           <h2 className='text-3xl text-center'>Log In </h2> <br /><br />
+          {error && <div className="mb-4 text-red-500 text-center">{error}</div>}
           <div className="mb-4">
             <label className="block text-gray-700 text-sm  mb-2 font-extrabold" htmlFor="email">
               Email
@@ -40,6 +50,7 @@ const Login = () => {
               type="email"
               placeholder="Email"
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
           <div className="mb-6">
@@ -52,6 +63,7 @@ const Login = () => {
               type="password"
               placeholder="******************"
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
           <div className='translate-y-[-30px]'>

@@ -35,10 +35,10 @@ const Db = Mongoose.connect(process.env.MONGODB_URI)
 App.post("/product", async(req, resp) => {
 
     const newProduct = {
-        Product: "Coffee",
-        Image: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Tazzina_di_caff%C3%A8_a_Ventimiglia.jpg",
-        Price: "$200",
-        Decription: "A concentrated, syrup-like coffee made by forcing nearly boiling water through finely-ground coffee beans"
+        Name: req.body.name,
+        Image:req.body.image,
+        Price: req.body.price,
+        Decription: req.body.decription
     };
     const product = Product.create(newProduct)
         .then((data) => {
@@ -76,10 +76,10 @@ App.delete("/deleteProduct/:id", async (req, resp) => {
 App.put("/EditProduct/:id", (req, resp) => {
 
     const newProduct = {
-        Product: "Red Tea",
-        Image: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Tazzina_di_caff%C3%A8_a_Ventimiglia.jpg",
-        Price: "$1200",
-        Decription: "A concentrated, syrup-like coffee made by forcing nearly boiling water through finely-ground coffee beans"
+        Product: req.body.name,
+        Image:  req.body.image,
+        Price: req.body.price,
+        Decription:req.body.decription
     };
 
     const { id } = req.params;
@@ -129,8 +129,9 @@ App.post('/login', async (req, resp) => {
         if (!isPassword) {
             return resp.json({ message: 'Password is incorrect' });
         }
+        const role = users.email;
         const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, { expiresIn: '1h' })
-        return resp.json({ message: 'Login successful', token });
+        return resp.json({ message: 'Login successful', token,role });
 
     } catch (error) {
         resp.status(400).json({ message: 'Login failed' });
@@ -148,9 +149,6 @@ App.post('/orders', async (req, res) => {
         "items": [
           {
             "productId": "66f6d3249a912381de3bd1d9"
-          },
-          {
-            "productId": "66f6d2fbdb001ab75be1b374"
           }
         ]
       };
