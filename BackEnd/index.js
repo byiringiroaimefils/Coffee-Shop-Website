@@ -140,54 +140,49 @@ App.post('/login', async (req, resp) => {
 })
 
 // Order Management
-
 App.post('/orders', async (req, res) => {
     try {
-      const { customerName, customerEmail, items } = {
-        "customerName": "John Doe",
-        "customerEmail": "john.doe@example.com",
-        "items": [
-          {
-            "productId": "66f6d3249a912381de3bd1d9"
-          }
-        ]
-      };
-  
-      const orderedItems = await Product.find({ '_id': { $in: items.map(item => item.productId) } });
-  
       const order = new Order({
-        customerName,
-        customerEmail,
-        items,
+        customerEmail: req.body.customerEmail,
+        customerName: req.body.customerName, // Add this line
+        productName: req.body.productName,
       });
-  
+
       await order.save();
-      res.status(201).json({ message: 'Order placed successfully', order });
+      res.status(201).json({ 
+        message: 'Order placed successfully', 
+        order: {
+          customerEmail: order.customerEmail,
+          customerName: order.customerName, // Add this line
+          productName: order.productName
+        }
+      });
     } catch (error) {
-      res.status(500).json({ message: 'Error placing order', error });
+      res.status(500).json({ message: 'Error placing order', error: error.message });
     }
   });
 
+
   App.get('/api/orders', async (req, res) => {
     try {
-      const orders = await Order.aggregate([
-        {
-          $lookup: {
-            from: 'products', 
-            localField: 'items.productId', 
-            foreignField: '_id',  
-            as: 'productDetails'  
-          }
-        }
-      ]);
+      const orders = await Order.find().select('customerEmail productName');
   
       res.status(200).json(orders);
     } catch (error) {
       res.status(500).json({ message: 'Error fetching orders', error });
     }
   });
-  
 
+
+App.delete('/orders/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        await Order.findByIdAndDelete(id);
+        res.status(200).json({ message: 'Order deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ message: 'Error deleting order', error: error.message });
+    }
+});
 
 App.listen(PORT, () => {
     console.log(`Server is running on Port ${PORT}`);

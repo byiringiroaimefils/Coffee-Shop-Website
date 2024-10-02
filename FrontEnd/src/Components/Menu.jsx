@@ -23,7 +23,7 @@ const menuItems = [
 ];
 
 export default function Menu() {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const signToken = localStorage.getItem('token');
     useEffect(() => {
         if (!signToken) {

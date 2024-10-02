@@ -17,7 +17,7 @@ const Login = () => {
       if (token) {
         localStorage.setItem('token', token);
         localStorage.setItem('Role', role);
-        navigate('/Home');
+        navigate('/home');
       } else {
         setError('Login failed. Please check your credentials.');
       }

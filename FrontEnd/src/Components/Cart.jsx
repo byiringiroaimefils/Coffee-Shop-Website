@@ -4,8 +4,8 @@ import { IoMdLogOut } from "react-icons/io";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const BreakfastMenu = () => {
-  const [menuItems, setMenuItems] = useState([]);
+const Cart = () => {
+  const [orders, setOrders] = useState([]);
   const navigate = useNavigate();
   const signToken = localStorage.getItem('token');
   const [userRole, setUserRole] = useState('');
@@ -24,18 +24,27 @@ const BreakfastMenu = () => {
     navigate('/');
   };
 
-  useEffect(() => {
-    const fetchMenuItems = async () => {
-      try {
-        const response = await axios.get("http://localhost:8000/");
-        setMenuItems(response.data);
-      } catch (error) {
-        console.error("Error fetching menu items:", error);
-      }
-    };
+  const fetchOrders = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/api/orders");
+      setOrders(response.data);
+    } catch (error) {
+      console.error("Error fetching orders:", error);
+    }
+  };
 
-    fetchMenuItems();
+  useEffect(() => {
+    fetchOrders();
   }, []);
+
+  const deleteOrder = async (orderId) => {
+    try {
+      await axios.delete(`http://localhost:8000/orders/${orderId}`);
+      setOrders(orders.filter(order => order._id !== orderId));
+    } catch (error) {
+      console.error("Error deleting order:", error);
+    }
+  };
 
   return (
     <>
@@ -65,19 +74,17 @@ const BreakfastMenu = () => {
       </div>
       <div className="max-w-6xl mx-auto px-4 py-8">
         <h2 className="text-3xl font-bold text-center mb-2">YOUR ORDERS </h2>
-        <p className="text-center text-sm text-gray-600 mb-8">
-          Substitute Egg Whites $2.00 | Add Extra Egg $2.00 | Add Pancake $3.00
-        </p>
         <div className="w-24 h-1 bg-gray-300 mx-auto mb-4"></div><br /><br />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {menuItems.map((item, index) => (
-            <div key={index} className="flex flex-col items-center mb-8">
-              <img src={item.image} alt={item.name} className="w-full h-48 object-cover mb-4 rounded-lg" />
-              <h3 className="text-xl font-bold mb-2">{item.name}</h3>
+          {orders.map((order) => (
+            <div key={order._id} className="flex flex-col items-center mb-8">
+              <p className="text-sm text-center text-gray-600 mb-2">{order.customerEmail}</p>
               <div className="w-16 h-0.5 bg-gray-300 mb-2"></div>
-              <p className="text-sm text-center text-gray-600 mb-2">{item.description}</p>
-              <p className="text-lg font-semibold">${item.price.toFixed(2)}</p> <br /> <br />
-              <button className="bg-red-500 text-white w-full p-2 rounded-md hover:bg-red-600">Delete Order</button>
+                <div key={order._id} className="w-full mb-4">
+                  <h4 className="text-lg font-semibold">{order.productName}</h4> {/* Update this line */}
+                  <p className="text-sm text-gray-600">{order.customerName}</p> {/* Add this line */}
+                </div>
+              <button onClick={() => deleteOrder(order._id)} className="bg-red-500 text-white w-full p-2 rounded-md hover:bg-red-600">Delete Order</button>
             </div>
           ))}
         </div>
@@ -86,4 +93,4 @@ const BreakfastMenu = () => {
   );
 };
 
-export default BreakfastMenu;
+export default Cart;

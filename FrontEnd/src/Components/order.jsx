@@ -8,15 +8,54 @@ const BreakfastMenu = () => {
   const navigate = useNavigate();
   const signToken = localStorage.getItem('token');
 
+  const addToOrder = async (productName) => {
+    try {
+      const response = await fetch('http://localhost:8000/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          customerEmail: 'john@example.com',
+          customerName: 'John Doe', // Add this line
+          productName: productName 
+        }),
+      });
+      const data = await response.json();
+      alert('Item added to cart', data); 
+      console.log(data);
+    } catch (error) {
+      console.error('Error placing order:', error);
+    }
+  };
+
+  // The customer name is not set because the current implementation only sends the email.
+  // To include the customer name, you would need to modify the backend API to accept a name,
+  // and then update this function to send both name and email. For example:
+  
+  // const addToOrder = async (productName) => {
+  //   try {
+  //     const response = await fetch('http://localhost:8000/orders', {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({
+  //         customerName: 'John Doe', // Add this line
+  //         customerEmail: 'john@example.com',
+  //         productId: productName 
+  //       }),
+  //     });
+  //     const data = await response.json();
+  //     alert('Item added to cart', data); 
+  //     console.log(data);
+  //   } catch (error) {
+  //     console.error('Error placing order:', error);
+  //   }
+  // };
+
 
   useEffect(() => {
     if (!signToken) {
       navigate('/');
     } 
   }, []);
-
-
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -47,7 +86,7 @@ const BreakfastMenu = () => {
               <div className="w-16 h-0.5 bg-gray-300 mb-2"></div>
               <p className="text-sm text-center text-gray-600 mb-2">{item.Decription}</p>
               <p className="text-lg font-semibold">${item.Price}</p>
-              <button className="mt-4 bg-black text-white w-full p-2 rounded-md hover:bg-gray-800">Add to Cart</button>
+              <button onClick={() => addToOrder(item.Name)} className="mt-4 bg-black text-white w-full p-2 rounded-md hover:bg-gray-800">Add to Cart</button>
             </div>
           ))}
         </div>

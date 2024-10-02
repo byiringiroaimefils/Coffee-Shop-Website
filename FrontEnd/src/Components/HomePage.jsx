@@ -25,7 +25,7 @@ export default function HomePage() {
 
     useEffect(() => {
         if (!signToken) {
-            navigate('/');
+            navigate('/signin'); // Redirect to login page if token is missing
         } else {
             setUserRole(localStorage.getItem('Role'));
         }
@@ -44,7 +44,7 @@ export default function HomePage() {
     const HandleSignout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('Role');
-        navigate('/');
+        navigate('/'); // Redirect to login page on sign out
     }
 
     const scrollToSection = (elementRef) => {
@@ -60,11 +60,11 @@ export default function HomePage() {
 
     return (
         <>
-            <div className="Navigation flex flex-wrap justify-between items-center m-4 md:m-8">
-                <div className="Logo mx-2 md:mx-5">
+            <div className="flex flex-wrap justify-between items-center m-4 md:m-8">
+                <div className="mx-2 md:mx-5">
                     <span className="font-bold text-lg text-gray-500"><Link to="/home">Coffee Shop.</Link></span>
                 </div>
-                <nav className="w-full md:w-auto mt-4 md:mt-0">
+                <nav className="w-full hidden md:flex md:w-auto mt-4 md:mt-0">
                     <ul className="flex flex-wrap justify-center md:justify-start gap-4 md:gap-7">
                         <li className="font-bold text-gray-500"><Link to="/home">HOME</Link></li>
                         <li className="font-bold text-gray-500"><Link to="#order" onClick={() => scrollToSection(orderRef)}>ORDER</Link></li>
@@ -75,18 +75,21 @@ export default function HomePage() {
                         )}
                     </ul>
                 </nav>
-                <div className="Right flex gap-4 md:gap-10 mt-4 md:mt-0">
+                <div className="flex mr-10 gap-4 md:gap-10 mt-4 md:mt-0">
                     <div className="font-bold">
                         <Link to='/Carts' ><RiShoppingCart2Line className="text-2xl text-gray-500" /></Link>
                     </div>
-                    <div className="Account font-bold" >
+                    <div className="font-bold">
                         <IoMdLogOut onClick={HandleSignout} className="text-2xl text-gray-500 cursor-pointer" />
                     </div>
                 </div>
             </div>
-            <div className="px-4 md:px-14 py-8 ">
+            <div className="px-4 md:px-14 py-8">
                 <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-20">
-                    <div className="text-center md:text-left md:w-1/2">
+                    <div className="w-full md:w-1/2 flex justify-center order-first md:order-last">
+                        <img src={Coffe} alt="coffee image" className="w-full max-w-md h-auto" />
+                    </div>
+                    <div className="text-center md:text-left md:w-1/2 order-last md:order-first">
                         <h2 className="text-3xl md:text-4xl font-extrabold mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit Explicabo.</h2>
                         <p className="text-gray-500 mb-8">
                             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam minus, ipsum
@@ -95,10 +98,8 @@ export default function HomePage() {
                         </p>
                         <button className="bg-black text-white w-full md:w-64 p-2 font-bold rounded-full hover:bg-gray-800" onClick={() => scrollToSection(orderRef)}>Order</button>
                     </div>
-                    <div className="w-full md:w-1/2 flex justify-center">
-                        <img src={Coffe} alt="coffee image" className="w-full max-w-md h-auto" />
-                    </div>
-                    <div className="hidden md:flex flex-col gap-10 absolute right-6 bottom-3 ">
+                </div>
+                    <div className="hidden md:flex flex-col gap-10 absolute right-6 bottom-3">
                         <ul>
                             <li className="text-xl mb-4"><FaFacebook /></li>
                             <li className="text-xl font-bold text-gray-500 mb-4"><BsTwitterX /></li>
@@ -121,7 +122,7 @@ export default function HomePage() {
                         <Contact />
                     </div>
                 </div>
-            </div>
+            {/* </div> */}
             <Footer />
         </>
     )

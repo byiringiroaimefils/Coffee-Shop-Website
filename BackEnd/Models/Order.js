@@ -1,12 +1,10 @@
 const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
-  customerName: String,
   customerEmail: String,
-  items: [{
-    productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
-  }],
+  customerName: String,
   orderDate: { type: Date, default: Date.now },
+  productName: String, // Add this line
 });
 
 const Order = mongoose.model('Order', orderSchema);

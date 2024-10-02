@@ -16,21 +16,15 @@ const App = () => {
     <BrowserRouter>
       <div>
         <Routes>
-          {/* Redirect to home page if signed in, otherwise go to sign-in */}
-          <Route path="/" element={signToken ? <Navigate to="/Home" /> : <SignIn />} />
-
-          {/* Protect the home page route, redirect if not signed in */}
-          <Route
-            path="/Home"
-            element={signToken ? <Home /> : <Navigate to="/" />}
-          />
+          <Route path="/" element={signToken ? <Navigate to="/home" /> : <SignIn />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/Carts" element={<Cart />} />
-          <Route path="/Menu" element={<Menu />} />
-          <Route path="/orders" element={<Orders />} />
-          <Route path="/About" element={<About />} />
-          <Route path="/Contact" element={<Contact />} />
-          <Route path="/Admin" element={<Admin />} />
+          <Route path="/home" element={signToken ? <Home /> : <Navigate to="/" />} />
+          <Route path="/Carts" element={signToken ? <Cart /> : <Navigate to="/" />} />
+          <Route path="/Menu" element={signToken ? <Menu /> : <Navigate to="/" />} />
+          <Route path="/orders" element={signToken ? <Orders /> : <Navigate to="/" />} />
+          <Route path="/About" element={signToken ? <About /> : <Navigate to="/" />} />
+          <Route path="/Contact" element={signToken ? <Contact /> : <Navigate to="/" />} />
+          <Route path="/Admin" element={signToken ? <Admin /> : <Navigate to="/" />} />
         </Routes>
       </div>
     </BrowserRouter>
