@@ -12,7 +12,7 @@ The Coffee Shop Website is a full-stack web application designed to manage and d
 ## Technologies Used
 - Frontend: HTML, CSS, JavaScript, React
 - Backend: Node.js, Express.js
-- Database: MongoDB (using Mongoose for ODM)
+- Database: MongoDB (using Mongoose for ODM) i have used MongoDB Atlas which is a test in my Cluster
 - Authentication: JWT (JSON Web Tokens)
 
 ## Installation
