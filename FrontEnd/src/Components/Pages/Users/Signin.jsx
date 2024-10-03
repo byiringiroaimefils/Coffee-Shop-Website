@@ -18,13 +18,14 @@ const Login = () => {
         localStorage.setItem('token', token);
         localStorage.setItem('Role', role);
         navigate('/home');
+        window.location.reload();
       } else {
         setError('Login failed. Please check your credentials.');
       }
     } catch (error) {
       if (error.response) {
-       
-        setError(error.response.data.message || 'An error occurred during login.');
+
+        setError('An error occurred during login.');
       } else if (error.request) {
         setError('No response received from server. Please try again later.');
       } else {

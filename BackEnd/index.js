@@ -1,4 +1,4 @@
-// ------ Library and PlugIn----
+    // ------ Library and PlugIn----
 const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
@@ -7,22 +7,18 @@ const Mongoose = require("mongoose");
 const PORT = process.env.PORT || 8000;
 const App = express();
 App.use(bodyParser.json());
-// const Db = require('./Db.js');
 const Product = require('./Models/Product.js');
 const user = require('./Models/user.js');
 const Order = require('./Models/Order');
+// const { Db} = require('mongodb');
 require("dotenv").config();
 const cors = require('cors');
 App.use(cors());
 
 
 
-// // ----- Schema of Database----
 
-// const Product = Mongoose.model("Product", ProductSchema);
-// const user = Mongoose.model("users", UserSchema);
-
-const Db = Mongoose.connect(process.env.MONGODB_URI)
+const Db = Mongoose.connect(process.env.MONGODB_URI,{ useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log("Db is connected");
     })
@@ -129,9 +125,9 @@ App.post('/login', async (req, resp) => {
         if (!isPassword) {
             return resp.json({ message: 'Password is incorrect' });
         }
-        const role = users.email;
+        const role = users.email; 
         const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, { expiresIn: '1h' })
-        return resp.json({ message: 'Login successful', token,role });
+        return resp.json({ message: 'Login successful', token,role});
 
     } catch (error) {
         resp.status(400).json({ message: 'Login failed' });
@@ -144,7 +140,7 @@ App.post('/orders', async (req, res) => {
     try {
       const order = new Order({
         customerEmail: req.body.customerEmail,
-        customerName: req.body.customerName, // Add this line
+        customerName: req.body.customerName, 
         productName: req.body.productName,
       });
 
@@ -153,7 +149,7 @@ App.post('/orders', async (req, res) => {
         message: 'Order placed successfully', 
         order: {
           customerEmail: order.customerEmail,
-          customerName: order.customerName, // Add this line
+          customerName: order.customerName, 
           productName: order.productName
         }
       });

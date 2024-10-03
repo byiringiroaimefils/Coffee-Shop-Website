@@ -7,6 +7,7 @@ const BreakfastMenu = () => {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
   const signToken = localStorage.getItem('token');
+  const email = localStorage.getItem('Role');
 
   const addToOrder = async (productName) => {
     try {
@@ -14,8 +15,8 @@ const BreakfastMenu = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          customerEmail: 'john@example.com',
-          customerName: 'John Doe', // Add this line
+          customerEmail: email,
+          customerName: email, 
           productName: productName 
         }),
       });
@@ -27,28 +28,7 @@ const BreakfastMenu = () => {
     }
   };
 
-  // The customer name is not set because the current implementation only sends the email.
-  // To include the customer name, you would need to modify the backend API to accept a name,
-  // and then update this function to send both name and email. For example:
   
-  // const addToOrder = async (productName) => {
-  //   try {
-  //     const response = await fetch('http://localhost:8000/orders', {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body: JSON.stringify({
-  //         customerName: 'John Doe', // Add this line
-  //         customerEmail: 'john@example.com',
-  //         productId: productName 
-  //       }),
-  //     });
-  //     const data = await response.json();
-  //     alert('Item added to cart', data); 
-  //     console.log(data);
-  //   } catch (error) {
-  //     console.error('Error placing order:', error);
-  //   }
-  // };
 
 
   useEffect(() => {
@@ -73,10 +53,10 @@ const BreakfastMenu = () => {
     <>
       
       <div className="max-w-6xl mx-auto px-4 py-8">
-        <h2 className="text-3xl font-bold text-center mb-2">ORDER YOUR FAVORITE</h2>
+        <h2 className="text-3xl font-bold text-center mb-2"> YOUR  ORDER FAVORITE</h2>
         <div className="w-24 h-1 bg-gray-300 mx-auto mb-4"></div>
         <p className="text-center text-sm text-gray-600 mb-8">
-          Substitute Egg Whites $2.00 | Add Extra Egg $2.00 | Add Pancake $3.00
+          Substitute $2.00 | Add Extra Egg $2.00 | Add Pancake $3.00
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {data.map((item) => (

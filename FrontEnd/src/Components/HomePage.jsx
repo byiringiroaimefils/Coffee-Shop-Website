@@ -1,12 +1,11 @@
 import { useEffect, useState, useRef } from 'react';
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { RiShoppingCart2Line } from "react-icons/ri";
-import { IoMdLogOut } from "react-icons/io";
 import { BsTwitterX } from "react-icons/bs";
 import { FaFacebook, FaInstagram } from "react-icons/fa6";
 import Coffe from "../assets/Coffe.png";
 import Menu from "../Components/Menu";
-import Order from "../Components/order";
+import Order from "./Order";
 import Contact from "../Components/Contac";
 import About from "../Components/About";
 import Footer from "../Components/Footer";
@@ -25,7 +24,8 @@ export default function HomePage() {
 
     useEffect(() => {
         if (!signToken) {
-            navigate('/signin'); // Redirect to login page if token is missing
+            navigate('/'); 
+         window.location.reload();
         } else {
             setUserRole(localStorage.getItem('Role'));
         }
@@ -44,7 +44,8 @@ export default function HomePage() {
     const HandleSignout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('Role');
-        navigate('/'); // Redirect to login page on sign out
+        navigate('/');
+        window.location.reload();
     }
 
     const scrollToSection = (elementRef) => {
@@ -70,17 +71,19 @@ export default function HomePage() {
                         <li className="font-bold text-gray-500"><Link to="#order" onClick={() => scrollToSection(orderRef)}>ORDER</Link></li>
                         <li className="font-bold text-gray-500"><Link to="#about" onClick={() => scrollToSection(aboutRef)}>ABOUT</Link></li>
                         <li className="font-bold text-gray-500"><Link to="#contact" onClick={() => scrollToSection(contactRef)}>CONTACT</Link></li>
-                        {userRole === 'aimefils225@gmail.com' && (
+                        {userRole === 'admin@gmail.com' && (
                             <li className="font-bold text-gray-500"><Link to="/Admin">ADMIN</Link></li>
                         )}
                     </ul>
                 </nav>
                 <div className="flex mr-10 gap-4 md:gap-10 mt-4 md:mt-0">
-                    <div className="font-bold">
+                    <div className="font-bold translate-y-2">
                         <Link to='/Carts' ><RiShoppingCart2Line className="text-2xl text-gray-500" /></Link>
                     </div>
-                    <div className="font-bold">
-                        <IoMdLogOut onClick={HandleSignout} className="text-2xl text-gray-500 cursor-pointer" />
+                    <div className="font-bold" onClick={HandleSignout}>
+                        <button className="bg-black text-white  md:w-24 p-2 font-bold rounded-full hover:bg-gray-800">
+                            <p className='text-sm p-1'>SignOut</p>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -96,32 +99,32 @@ export default function HomePage() {
                             quos iure molestias perspiciatis, inventore corrupti culpa nemo eius Lorem
                             dolor. cupiditate dolor sit.
                         </p>
-                        <button className="bg-black text-white w-full md:w-64 p-2 font-bold rounded-full hover:bg-gray-800" onClick={() => scrollToSection(orderRef)}>Order</button>
+                        <button className="bg-black text-white w-full md:w-72 p-2 font-bold rounded-full hover:bg-gray-800" onClick={() => scrollToSection(orderRef)}>Order</button>
                     </div>
                 </div>
-                    <div className="hidden md:flex flex-col gap-10 absolute right-6 bottom-3">
-                        <ul>
-                            <li className="text-xl mb-4"><FaFacebook /></li>
-                            <li className="text-xl font-bold text-gray-500 mb-4"><BsTwitterX /></li>
-                            <li className="text-xl"><FaInstagram /></li>
-                        </ul>
-                    </div>
+                <div className="hidden md:flex flex-col gap-10 absolute right-6 bottom-3">
+                    <ul>
+                        <li className="text-xl mb-4"><FaFacebook /></li>
+                        <li className="text-xl font-bold text-gray-500 mb-4"><BsTwitterX /></li>
+                        <li className="text-xl"><FaInstagram /></li>
+                    </ul>
                 </div>
-                <div className="mt-16 md:mt-32 text-center">
-                    <div ref={menuRef} id="menu">
-                        <Menu />
-                    </div>
-                    <div ref={orderRef} id="order">
-                        <Order />
-                    </div>
-                    <div ref={aboutRef} id="about">
-                        <About />
-                    </div>
-                    <br /><br />
-                    <div ref={contactRef} id="contact">
-                        <Contact />
-                    </div>
+            </div>
+            <div className="mt-16 md:mt-32 text-center">
+                <div ref={menuRef} id="menu">
+                    <Menu />
                 </div>
+                <div ref={orderRef} id="order">
+                    <Order />
+                </div>
+                <div ref={aboutRef} id="about">
+                    <About />
+                </div>
+                <br /><br />
+                <div ref={contactRef} id="contact">
+                    <Contact />
+                </div>
+            </div>
             {/* </div> */}
             <Footer />
         </>

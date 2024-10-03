@@ -15,8 +15,8 @@ const menuItems = [
         link: "#",
     },
     {
-        title: "African Coffe",
-        description: "All Coffee, Smoothies & Power Drinks",
+        title: "Beautiful Coffee",
+        description: "Smoothies & Power Drinks",
         image: "https://static.wixstatic.com/media/b8deca_3ece1d16da1547f28af71d8d7bf5952f~mv2.jpg/v1/fill/w_232,h_232,usm_1.20_1.00_0.01/file.webp", // Replace with actual image path
         link: "#",
     },
@@ -51,7 +51,7 @@ export default function Menu() {
                                     <div className="w-48 h-48 rounded-full overflow-hidden mb-4">
                                         <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
                                     </div>
-                                    <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                                    <h3 className="text-xl font-bold mb-2 uppercase font-beautiful">{item.title}</h3>
                                     <p className="text-gray-500 text-center mb-4">{item.description}</p>
 
                                 </div>

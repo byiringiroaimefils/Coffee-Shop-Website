@@ -1,5 +1,4 @@
 import { RiShoppingCart2Line } from "react-icons/ri";
-import { IoMdLogOut } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -57,12 +56,12 @@ export default function Admin() {
             decription
         };
         if (editingProduct) {
-            
+
 
             axios.put(`http://localhost:8000/EditProduct/${editingProduct._id}`, data)
                 .then((response) => {
                     console.log(response.data);
-                    setProducts(products.map(p => p._id === editingProduct._id ? {...p, ...data} : p));
+                    setProducts(products.map(p => p._id === editingProduct._id ? { ...p, ...data } : p));
                     resetForm();
                 })
                 .catch((error) => {
@@ -118,8 +117,10 @@ export default function Admin() {
                     <div className="font-bold md:block hidden">
                         <Link to='/Carts' ><RiShoppingCart2Line className="text-2xl text-gray-500" /></Link>
                     </div>
-                    <div className="Account font-bold" >
-                        <IoMdLogOut onClick={HandleSignout} className="text-2xl text-gray-500 cursor-pointer" />
+                    <div className="font-bold" onClick={HandleSignout}>
+                        <button className="bg-black text-white  md:w-24 p-2 font-bold rounded-full hover:bg-gray-800">
+                            <p className='text-sm'>SignOut</p>
+                        </button>
                     </div>
                 </div>
             </div>
