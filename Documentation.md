@@ -24,7 +24,7 @@ The Coffee Shop Website is a full-stack web application designed to manage and d
 ### Steps
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/coffee-shop-website.git
+    git clone https://github.com/byiringiroaimefils/Coffee-Shop-Website
     cd coffee-shop-website
     ```
 

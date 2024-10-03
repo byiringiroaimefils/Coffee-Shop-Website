@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 const menuItems = [
     {
-        title: "African Tea",
+        title: "Iced Coffees",
         description: "Serving with Beatiful Tea",
         image: "https://static.wixstatic.com/media/b8deca_4a5096d76b13468db0d2ba865d43895f~mv2.jpg/v1/fill/w_232,h_232,usm_1.20_1.00_0.01/file.webp", // Replace with actual image path
         link: "#",
@@ -15,7 +15,7 @@ const menuItems = [
         link: "#",
     },
     {
-        title: "Beautiful Coffee",
+        title: "Coffe",
         description: "Smoothies & Power Drinks",
         image: "https://static.wixstatic.com/media/b8deca_3ece1d16da1547f28af71d8d7bf5952f~mv2.jpg/v1/fill/w_232,h_232,usm_1.20_1.00_0.01/file.webp", // Replace with actual image path
         link: "#",

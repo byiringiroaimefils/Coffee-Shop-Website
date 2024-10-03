@@ -93,7 +93,7 @@ export default function HomePage() {
                         <img src={Coffe} alt="coffee image" className="w-full max-w-md h-auto" />
                     </div>
                     <div className="text-center md:text-left md:w-1/2 order-last md:order-first">
-                        <h2 className="text-3xl md:text-4xl font-extrabold mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit Explicabo.</h2>
+                        <h2 className="text-3xl md:text-4xl font-extrabold mb-4">Indulge in Perfection: Your Ultimate Coffee Experience Awaits</h2>
                         <p className="text-gray-500 mb-8">
                             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam minus, ipsum
                             quos iure molestias perspiciatis, inventore corrupti culpa nemo eius Lorem
