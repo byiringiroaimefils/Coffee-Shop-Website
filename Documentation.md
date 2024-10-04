@@ -53,6 +53,6 @@ The Coffee Shop Website is a full-stack web application designed to manage and d
 - Admin Panel: Navigate to `/admin` to access the admin functionalities.
 
 credential of Admin by default is 
-email: admin@admin.com,
+email: admin@gmail.com.com,
 password: admin
 
