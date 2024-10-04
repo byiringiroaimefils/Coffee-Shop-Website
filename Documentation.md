@@ -52,3 +52,7 @@ The Coffee Shop Website is a full-stack web application designed to manage and d
 - SignIn Page: Open your browser and go to `http://localhost:8000/`.
 - Admin Panel: Navigate to `/admin` to access the admin functionalities.
 
+credential of Admin by default is 
+email: admin@admin.com,
+password: admin
+
