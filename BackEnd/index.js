@@ -3,28 +3,31 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const Mongoose = require("mongoose");
 const PORT = process.env.PORT || 8000;
 const App = express();
-App.use(bodyParser.json());
 const Product = require('./Models/Product.js');
 const user = require('./Models/user.js');
 const Order = require('./Models/Order');
-// const { Db} = require('mongodb');
+const connectToDb = require('./Db.js');
 require("dotenv").config();
 const cors = require('cors');
+
+App.use(bodyParser.json());
 App.use(cors());
 
-
-
-
-const Db = Mongoose.connect(process.env.MONGODB_URI,{ useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => {
-        console.log("Db is connected");
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+// Initialize database connection before starting the server
+const startServer = async () => {
+    try {
+        await connectToDb(); // Connect to database first
+        
+        App.listen(PORT, () => {
+            console.log(`Server is running on Port ${PORT}`);
+        });
+    } catch (error) {
+        console.error('Failed to start server:', error);
+        process.exit(1);
+    }
+};
 
 // -----Product Magement------
 
@@ -88,7 +91,7 @@ App.put("/EditProduct/:id", (req, resp) => {
         });
 });
 
-// ------user Management----
+// ------User Auntontication ----
 
 
 App.post('/signup', async (req, res) => {
@@ -115,25 +118,23 @@ App.post('/signup', async (req, res) => {
 
 App.post('/login', async (req, resp) => {
     try {
-
         const { email, password } = req.body;
-        const users = await user.findOne({ email })
+        const users = await user.findOne({ email });
         if (!users) {
             return resp.json({ message: 'User not found' });
         }
-        const isPassword = await bcrypt.compare(password, users.password)
+        const isPassword = await bcrypt.compare(password, users.password);
         if (!isPassword) {
             return resp.json({ message: 'Password is incorrect' });
         }
-        const role = users.email; 
-        const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, { expiresIn: '1h' })
-        return resp.json({ message: 'Login successful', token,role});
-
+        const token = jwt.sign({ id: users._id }, process.env.SECRET_KEY, { expiresIn: '1h' });
+        return resp.json({ message: 'Login successful', token, role: email });
     } catch (error) {
+        console.error('Login error:', error);
         resp.status(400).json({ message: 'Login failed' });
     }
+});
 
-})
 
 // Order Management
 App.post('/orders', async (req, res) => {
@@ -180,6 +181,5 @@ App.delete('/orders/:id', async (req, res) => {
     }
 });
 
-App.listen(PORT, () => {
-    console.log(`Server is running on Port ${PORT}`);
-})
+// Start the server
+startServer();
