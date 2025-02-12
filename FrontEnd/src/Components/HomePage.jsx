@@ -24,8 +24,8 @@ export default function HomePage() {
 
     useEffect(() => {
         if (!signToken) {
-            navigate('/'); 
-         window.location.reload();
+            navigate('/');
+            window.location.reload();
         } else {
             setUserRole(localStorage.getItem('Role'));
         }
@@ -61,48 +61,64 @@ export default function HomePage() {
 
     return (
         <>
-            <div className="flex flex-wrap justify-between items-center m-4 md:m-8">
-                <div className="mx-2 md:mx-5">
-                    <span className="font-bold text-lg text-gray-500"><Link to="/home">Coffee Shop.</Link></span>
+            <div className="flex flex-wrap justify-between items-center m-2 md:m-10">
+                <div className="mx-4 md:mx-5">
+                    <span className="font-bold text-2xl text-gray-500">
+                        <Link to="/home">Coffee Shop.</Link>
+                    </span>
                 </div>
                 <nav className="w-full hidden md:flex md:w-auto mt-4 md:mt-0">
                     <ul className="flex flex-wrap justify-center md:justify-start gap-4 md:gap-7">
-                        <li className="font-bold text-gray-500"><Link to="/home">HOME</Link></li>
-                        <li className="font-bold text-gray-500"><Link to="#order" onClick={() => scrollToSection(orderRef)}>ORDER</Link></li>
-                        <li className="font-bold text-gray-500"><Link to="#about" onClick={() => scrollToSection(aboutRef)}>ABOUT</Link></li>
-                        <li className="font-bold text-gray-500"><Link to="#contact" onClick={() => scrollToSection(contactRef)}>CONTACT</Link></li>
+                        <li className="font-bold text-gray-500"><Link to="/home">Home</Link></li>
+                        <li className="font-bold text-gray-500">
+                            <Link to="#menu" onClick={() => scrollToSection(menuRef)}>Menu</Link>
+                        </li>
+                        <li className="font-bold text-gray-500">
+                            <Link to="#order" onClick={() => scrollToSection(orderRef)}>Order</Link>
+                        </li>
+                        <li className="font-bold text-gray-500">
+                            <Link to="#about" onClick={() => scrollToSection(aboutRef)}>About</Link>
+                        </li>
+                        <li className="font-bold text-gray-500">
+                            <Link to="#contact" onClick={() => scrollToSection(contactRef)}>Contact</Link>
+                        </li>
                         {userRole === 'admin@gmail.com' && (
-                            <li className="font-bold text-gray-500"><Link to="/Admin">ADMIN</Link></li>
+                            <li className="font-bold text-gray-500"><Link to="/Admin">Admin</Link></li>
                         )}
                     </ul>
                 </nav>
-                <div className="flex mr-10 gap-4 md:gap-10 mt-4 md:mt-0">
-                    <div className="font-bold translate-y-2">
-                        <Link to='/Carts' ><RiShoppingCart2Line className="text-2xl text-gray-500" /></Link>
+                <div className="flex gap-4 md:gap-10 mt-4 md:mt-0">
+                    <div className="hidden md:flex">
+                        <Link to='/Carts'>
+                            <button className="border border-black md:w-24 font-bold rounded-full p-1 hover:bg-gray-800 hover:text-white">
+                                <span className='text-sm p-1'>Cart</span>
+                            </button>
+                        </Link>
                     </div>
-                    <div className="font-bold" onClick={HandleSignout}>
-                        <button className="bg-black text-white  md:w-24 p-2 font-bold rounded-full hover:bg-gray-800">
-                            <p className='text-sm p-1'>SignOut</p>
-                        </button>
-                    </div>
+                    <button 
+                        onClick={HandleSignout}
+                        className="bg-black text-white md:w-24 font-bold rounded-full p-2 hover:bg-gray-800"
+                    >
+                        <span className='text-sm'>Sign out</span>
+                    </button>
                 </div>
             </div>
             <div className="px-4 md:px-14 py-8">
                 <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-20">
                     <div className="w-full md:w-1/2 flex justify-center order-first md:order-last">
-                        <img src={Coffe} alt="coffee image" className="w-full max-w-md h-auto" />
+                        <img src={Coffe} alt="coffee image" className="w-full max-w-md " />
                     </div>
-                    <div className="text-center md:text-left md:w-1/2 order-last md:order-first">
-                        <h2 className="text-3xl md:text-4xl font-extrabold mb-4">Indulge in Perfection: Your Ultimate Coffee Experience Awaits</h2>
+                    <div className="text-center md:text-left md:w-1/2 order-last md:order-first mt-6">
+                        <h2 className="text-4xl md:text-5xl font-extrabold mb-4">Perfection Your Ultimate Coffee Experience Awaits</h2>
                         <p className="text-gray-500 mb-8">
                             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam minus, ipsum
                             quos iure molestias perspiciatis, inventore corrupti culpa nemo eius Lorem
-                            dolor. cupiditate dolor sit.
+                            dolor. cupiditate dolor sit  quos iure molestias perspiciatis, inventore corrupti culpa nemo
                         </p>
-                        <button className="bg-black text-white w-full md:w-72 p-2 font-bold rounded-full hover:bg-gray-800" onClick={() => scrollToSection(orderRef)}>Order</button>
+                        <button className="bg-black text-white w-full md:w-75  p-2 font-bold rounded-full hover:bg-gray-800 mt-10" onClick={() => scrollToSection(orderRef)}>Explore More</button>
                     </div>
                 </div>
-                <div className="hidden md:flex flex-col gap-10 absolute right-6 bottom-3">
+                <div className="hidden md:flex flex-col gap-10  right-6 bottom-3 fixed">
                     <ul>
                         <li className="text-xl mb-4"><FaFacebook /></li>
                         <li className="text-xl font-bold text-gray-500 mb-4"><BsTwitterX /></li>
@@ -111,21 +127,20 @@ export default function HomePage() {
                 </div>
             </div>
             <div className="mt-16 md:mt-32 text-center">
-                <div ref={menuRef} id="menu">
+                <div ref={menuRef} id="menu" className='mt-10'>
                     <Menu />
                 </div>
-                <div ref={orderRef} id="order">
+                <div ref={orderRef} id="order" className='mt-10'>
                     <Order />
                 </div>
-                <div ref={aboutRef} id="about">
+                <div ref={aboutRef} id="about" className='mt-10'>
                     <About />
                 </div>
                 <br /><br />
-                <div ref={contactRef} id="contact">
+                <div ref={contactRef} id="contact" className='mt-10'>
                     <Contact />
                 </div>
             </div>
-            {/* </div> */}
             <Footer />
         </>
     )

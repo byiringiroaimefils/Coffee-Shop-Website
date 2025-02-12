@@ -71,12 +71,12 @@ const Cart = () => {
         </div>
         <nav className="w-full md:w-auto mt-4 md:mt-0">
           <ul className="flex flex-wrap justify-center md:justify-start gap-4 md:gap-7">
-            <li className="font-bold text-gray-500"><Link to="/home">HOME</Link></li>
-            <li className="font-bold text-gray-500"><Link to="/order">ORDER</Link></li>
-            <li className="font-bold text-gray-500"><Link to="/about">ABOUT</Link></li>
-            <li className="font-bold text-gray-500"><Link to="/contact">CONTACT </Link></li>
+            <li className="font-bold text-gray-500"><Link to="/home">Home</Link></li>
+            <li className="font-bold text-gray-500"><Link to="/order">Order</Link></li>
+            <li className="font-bold text-gray-500"><Link to="/about">About</Link></li>
+            <li className="font-bold text-gray-500"><Link to="/contact">Contact </Link></li>
             {userRole === 'admin' && (
-              <li className="font-bold text-gray-500"><Link to="/Admin">ADMIN</Link></li>
+              <li className="font-bold text-gray-500"><Link to="/Admin">Admin</Link></li>
             )}
           </ul>
         </nav>

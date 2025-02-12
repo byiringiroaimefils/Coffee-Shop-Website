@@ -100,28 +100,36 @@ export default function Admin() {
 
     return (
         <>
-            <div className="Navigation flex justify-between m-8">
-                <div className="Logo mx-5">
-                    <span className="font-bold text-lg text-gray-500"><Link to="/home">Coffee Shop.</Link></span>
+            <div className="flex flex-wrap justify-between items-center m-2 md:m-10">
+                <div className="mx-4 md:mx-5">
+                    <span className="font-bold text-2xl text-gray-500">
+                        <Link to="/home">Coffee Shop.</Link>
+                    </span>
                 </div>
-                <nav className="md:flex hidden">
-                    <ul className="flex gap-7 translate-x-[-15%]">
-                        <li className="font-bold text-gray-500"><Link to="/home">HOME</Link></li>
-                        <li className="font-bold text-gray-500"><Link to="/order">ORDER</Link></li>
-                        <li className="font-bold text-gray-500"><Link to="/about">ABOUT</Link></li>
-                        <li className="font-bold text-gray-500"><Link to="/contact">CONTACT</Link></li>
-                        <li className="font-bold text-gray-500"><Link to="/Admin">ADMIN</Link></li>
+                <nav className="w-full hidden md:flex md:w-auto mt-4 md:mt-0">
+                    <ul className="flex flex-wrap justify-center md:justify-start gap-4 md:gap-7">
+                        <li className="font-bold text-gray-500"><Link to="/home">Home</Link></li>
+                        <li className="font-bold text-gray-500"><Link to="/home#menu">Menu</Link></li>
+                        <li className="font-bold text-gray-500"><Link to="/home#order">Order</Link></li>
+                        <li className="font-bold text-gray-500"><Link to="/home#about">About</Link></li>
+                        <li className="font-bold text-gray-500"><Link to="/home#contact">Contact</Link></li>
+                        <li className="font-bold text-gray-500"><Link to="/Admin">Admin</Link></li>
                     </ul>
                 </nav>
-                <div className="Right flex gap-10 translate-x-[-10%]">
-                    <div className="font-bold md:block hidden">
-                        <Link to='/Carts' ><RiShoppingCart2Line className="text-2xl text-gray-500" /></Link>
+                <div className="flex gap-4 md:gap-10 mt-4 md:mt-0">
+                    <div className="hidden md:flex">
+                        <Link to='/Carts'>
+                            <button className="border border-black md:w-24 font-bold rounded-full p-1 hover:bg-gray-800 hover:text-white">
+                                <span className='text-sm p-1'>Cart</span>
+                            </button>
+                        </Link>
                     </div>
-                    <div className="font-bold" onClick={HandleSignout}>
-                        <button className="bg-black text-white  md:w-24 p-2 font-bold rounded-full hover:bg-gray-800">
-                            <p className='text-sm'>SignOut</p>
-                        </button>
-                    </div>
+                    <button 
+                        onClick={HandleSignout}
+                        className="bg-black text-white md:w-24 font-bold rounded-full p-2 hover:bg-gray-800"
+                    >
+                        <span className='text-sm'>Sign out</span>
+                    </button>
                 </div>
             </div>
             <div>

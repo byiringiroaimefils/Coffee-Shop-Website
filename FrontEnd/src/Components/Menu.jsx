@@ -41,12 +41,12 @@ export default function Menu() {
                 <div className="w-24 h-1 bg-gray-300 mx-auto mb-4"></div>
                 <p className="text-gray-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, hic!</p> <br />
                 <div className=" py-12">
-                    <div className="container mx-auto ">
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-between p-10">
+                    <div className="container ">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-between p-10 ">
                             {menuItems.map((item, index) => (
                                 <div
                                     key={index}
-                                    className="bg-white shadow-lg rounded-lg p-8 flex flex-col items-center "
+                                    className="bg-white shadow-lg rounded-lg p-8 flex flex-col items-center"
                                 >
                                     <div className="w-48 h-48 rounded-full overflow-hidden mb-4">
                                         <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
