@@ -81,7 +81,7 @@ credential of Admin by default is
 email: admin@gmail.com.com,
 password: admin
 
-## Usage
+## Usage:
 BYIRINGIRO Aime Fils
 
 
